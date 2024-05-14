@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>
+    View college day from this class
+</h2>
+<table border="1" style="border-collapse: collapse;">
+
+    <tr>
+        <th>id</th>
+        <th>date</th>
+        <th>state</th>
+    </tr>
+
+    {% for l in cgd %}
+        <tr>
+            <td>{{ l.id }}</td>
+            <td>{{ l.date }}</td>
+            <td><span class="hv">HAVING</span></td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+<h2>
+    Add college day for this class
+</h2>
+
+<form action="add_college_day">
+    <input type="hidden" name="cid" value="{{ cid }}">
+    <div>
+        <div>
+            Select a date:<input type="date" name="date" required>
+        </div>
+    </div>
+    <button>save</button>
+</form>
+
+
+
+</body>
+<style>
+    .hv {
+        background-color: green;
+        color: white;
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+    td{
+        padding: 5px 10px;
+    }
+</style>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+
+
+<form action="/login" method="POST">
+
+    {% csrf_token %}
+<div>
+        <label for="">Select you login type:</label>
+    </div>
+    <div>
+
+        <input type="radio" value="admin" name="role" checked id="r1" required>
+        <label for="r1">
+            Admin
+            &nbsp;&nbsp;&nbsp;&nbsp;
+        </label>
+
+
+        <input type="radio" value="lecture" name="role" id="r2" required>
+        <label for="r2">
+            Lecture
+            &nbsp;&nbsp;&nbsp;&nbsp;
+        </label>
+
+
+        <input type="radio" value="student" name="role" id="r3">
+        <label for="r3">
+            Student
+            &nbsp;&nbsp;&nbsp;&nbsp;
+        </label>
+
+
+    </div>
+
+
+    <br>
+    <div>
+        <label for="">Account: </label>
+    </div>
+    <div>
+        <input type="text" name="acc" value="">
+    </div>
+
+    <br>
+
+    <div>
+        <label for="">Password:</label>
+    </div>
+    <div>
+        <input type="password" name="pw" value="">
+    </div>
+
+    <br>
+
+
+
+    <button>Login</button>
+
+    <h4>Admin account: 1234 password: 1234</h4>
+    
+
+</form>
+
+
+
+
+
+</body>
+</html>

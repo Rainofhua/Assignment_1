@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+
+<h4>
+    Class number: <span class="tag"> {{ class_info.number }} </span>
+</h4>
+<h4>
+    Data: <span class="tag">{{ today_date }} </span>
+</h4>
+<h4>
+    Attendance today?: <span class="tag">{{ having_class }} </span>
+</h4>
+
+
+<h2>
+    Student list
+</h2>
+<table border="1" style="border-collapse: collapse;">
+
+    <tr>
+        <th>student id</th>
+        <th>full name</th>
+        <th>password</th>
+        <th>email</th>
+        {% if having_class == 'YES' %}
+            <th>state</th>
+            <th>change attendance</th>
+        {% endif %}
+        <th>edit </th>
+    </tr>
+
+    {% for l in s %}
+        <tr>
+            <td>{{ l.ssid }}</td>
+            <td>{{ l.ssname }}</td>
+            <td>{{ l.ssp }}</td>
+            <td>{{ l.sse }}</td>
+            {% if having_class == 'YES' %}
+                <td>
+                    {{ l.state_text }}
+                </td>
+                <td>
+                    <form action="save_attendance">
+                        <input type="hidden" name="cid" value="{{ cid }}">
+                        <input type="hidden" name="ct_id" value="{{ ct_id }}">
+                        <input type="hidden" name="stu_id" value="{{ l.ssid }}">
+                        <select name="state">
+                            <option value="0">Skip</option>
+                            <option value="1">Normal</option>
+                            <option value="2">Leave</option>
+                            <option value="3">Late</option>
+                        </select>
+                        <button>save</button>
+                    </form>
+                </td>
+            {% endif %}
+            <td>
+                <a href="check_attendance?cid={{ cid }}&sid={{ l.ssid }}">
+                    <button>check attendance</button>
+                </a>
+                {% if request.session.ROLE == 'admin' %}
+                <a href="remove_stu_from_class?sid={{ l.ssid }}&cid={{ cid }}" onclick="return confirm('WARNNING: Are you confirm to remove this stu from this class?')">
+                    <button>remove this student</button>
+                </a>
+                {% endif %}
+
+
+            </td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+{% if role == 'admin' %}
+
+<h2> Enroll </h2>
+
+<form action="enroll_stu" method="POST">
+    <input type="hidden" value="{{ cid }}" name="cid">
+    <div>
+        <label for="">select student:</label>
+        <br/>
+        {% for l in sno %}
+            <input type="radio" required name="stu_id" value="{{ l.student_id }}"> {{ l.user.first_name }} -
+            {{ l.user.last_name }}
+            <br/>
+        {% endfor %}
+    </div>
+    <button>enroll</button>
+</form>
+{% endif %}
+</body>
+
+</html>

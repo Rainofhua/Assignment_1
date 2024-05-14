@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Student manage</title>
+</head>
+<body>
+
+<h2> Student edit </h2>
+
+<table border="1" style="border-collapse: collapse;">
+
+    <tr>
+        <th>student id</th>
+        <th>full name</th>
+        <th>password</th>
+        <th>birth</th>
+        <th>email</th>
+        <th>edit</th>
+    </tr>
+
+    {% for l in li %}
+        <tr>
+            <td>{{ l.student_id }}</td>
+            <td>{{ l.user.first_name }} - {{ l.user.last_name }}</td>
+            <td>{{ l.password }}</td>
+            <td>{{ l.dob }}</td>
+            <td>{{ l.user.email }}</td>
+            <td>
+                <a href="edit_student?id={{ l.student_id }}">
+                    <button>
+                        edit
+                    </button>
+                </a>
+
+            </td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+
+<h2> Add student </h2>
+
+<form action="students_add" method="POST">
+    <div>
+        <input type="text" name="first_name" placeholder="first_name">
+    </div>
+    <div>
+        <input type="text" name="last_name" placeholder="last_name">
+    </div>
+    <div>
+        <input type="text" name="email" placeholder="email">
+    </div>
+    <div>
+        <input type="date" name="dob" placeholder="date of birth">
+    </div>
+    <div>
+        <input type="text" name="password" value="123456" placeholder="default password">
+    </div>
+    <button>save</button>
+
+</form>
+
+
+<h2> Student submit link </h2>
+<div style="color: red; font-size: 12px;">
+
+</div>
+<form action="students_batch_upload" method="POST" enctype="multipart/form-data">
+    <div>
+        <input type="file" name="excel" required>
+    </div>
+    <button>upload</button>
+</form>
+
+<br/><br/><br/><br/>
+
+</body>
+</html>

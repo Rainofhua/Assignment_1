@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+
+<h1>Home Page</h1>
+
+
+
+{% if request.session.ROLE == 'admin' %}
+<div>
+    <a href="customers_manage">
+        <button>users manage</button>
+    </a>
+</div>
+
+<div>
+    <a href="students_manage">
+        <button>students manage</button>
+    </a>
+</div>
+
+<div>
+    <a href="lecture_manage">
+        <button>lectures manage</button>
+    </a>
+</div>
+
+<div>
+    <a href="semester_manage">
+        <button>semester manage</button>
+    </a>
+</div>
+
+<div>
+    <a href="course_manage">
+        <button>course manage</button>
+    </a>
+</div>
+
+<div>
+    <a href="class_manage">
+        <button>class manage</button>
+    </a>
+</div>
+{% endif %}
+
+
+
+{% if request.session.ROLE == 'lecture' %}
+<div>
+    <a href="lecture_check_class">
+        <button>check my class</button>
+    </a>
+</div>
+{% endif %}
+
+
+{% if request.session.ROLE == 'student' %}
+<div>
+    <a href="check_attendance?sid={{ request.session.LOGIN_ID }}">
+        <button>check my attendance</button>
+    </a>
+</div>
+{% endif %}
+
+</body>
+</html>

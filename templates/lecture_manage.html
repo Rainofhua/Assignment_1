@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecture manage</title>
+</head>
+<body>
+
+<h2> Lecture manage </h2>
+
+<table border="1" style="border-collapse: collapse;">
+
+    <tr>
+        <th>staff id</th>
+        <th>full name</th>
+        <th>password</th>
+        <th>date of birth</th>
+        <th>email</th>
+    </tr>
+
+    {% for l in li %}
+        <tr>
+            <td>{{ l.staff_id }}</td>
+            <td>{{ l.user.first_name }} - {{ l.user.last_name }}</td>
+            <td>{{ l.password }}</td>
+            <td>{{ l.dob }}</td>
+            <td>{{ l.user.email }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+<h2> Lecturer add </h2>
+
+<form action="lecture_add" method="POST">
+    <div>
+        <input type="text" name="first_name" placeholder="first_name">
+    </div>
+    <div>
+        <input type="text" name="last_name" placeholder="last_name">
+    </div>
+    <div>
+        <input type="text" name="email" placeholder="email">
+    </div>
+    <div>
+        <input type="datetime-local" name="dob" placeholder="date of birth">
+    </div>
+    <div>
+        <input type="text" name="password" value="123456" placeholder="default password">
+    </div>
+    <button>save</button>
+
+</form>
+
+</body>
+</html>

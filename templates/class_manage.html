@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Class</title>
+</head>
+<body>
+
+<h2> Class manage </h2>
+<table border="1" style="border-collapse: collapse;">
+
+    <tr>
+        <th>id</th>
+        <th>number</th>
+        <th>course id</th>
+        <th>semester id</th>
+        <th>lecture id</th>
+        <th>edit</th>
+    </tr>
+
+    {% for l in li %}
+        <tr>
+            <td>{{ l.id }}</td>
+            <td>{{ l.number }}</td>
+            <td>{{ l.course_id }}</td>
+            <td>{{ l.semester_id }}</td>
+            <td>{{ l.lecture_id }}</td>
+            <td>
+                <a href="view_students_list?cid={{ l.id }}">
+                    <button>view students list and attendance</button>
+                </a>
+
+
+                {% if isAdmin %}
+                <a href="college_day_manage?cid={{ l.id }}">
+                    <button>college day manage</button>
+                </a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+
+{% if isAdmin %}
+<h2> Class add </h2>
+
+<form action="class_add" method="POST">
+    <div>
+        <label for="">Number:</label>
+        <input type="number" name="number" placeholder="number">
+    </div>
+    <div>
+        <label for="">Choose course:</label>
+        <select name="course_id" id="">
+            {% for l in all_Course %}
+                <option value="{{ l.id }}">{{ l.code }}-{{ l.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <label for="">Choose Semester:</label>
+        <select name="semester_id" id="">
+            {% for l in all_Semester %}
+                <option value="{{ l.id }}">{{ l.semester }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <label for="">Choose lecture:</label>
+        <select name="lecture_id" id="">
+            {% for l in all_Lecture %}
+                <option value="{{ l.staff_id }}">{{ l.user.first_name }}-{{ l.user.last_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+
+    <button>save</button>
+</form>
+{% endif %}
+</body>
+</html>

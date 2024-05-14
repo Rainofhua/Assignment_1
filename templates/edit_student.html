@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>
+    EDIT STUDENT
+</h2>
+
+<form action="exe_edit_student" method="POST">
+
+    <input type="hidden" value="{{ info.student_id }}" name="id">
+    <div>
+        <input type="text" name="first_name" placeholder="first_name" value="{{ info.user.first_name}}" required>
+    </div>
+    <div>
+        <input type="text" name="last_name" placeholder="last_name" value="{{ info.user.last_name}}" required>
+    </div>
+    <div>
+        <input type="text" name="email" placeholder="email"  value="{{ info.user.email}}" required>
+    </div>
+    <div>
+        <input type="date" name="dob" placeholder="date of birth" value="{{ info.dob }}" required>
+    </div>
+    <button>save</button>
+</form>
+
+
+</body>
+</html>

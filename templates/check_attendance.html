@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance</title>
+</head>
+<body>
+
+<h2>
+    Attendance Record
+</h2>
+
+<h4>
+    expected attendance days : <span class="tag">{{ lilen }}</span>
+</h4>
+
+<h4>
+    actual attendance days : <span class="tag">{{ total_ok }}</span>
+</h4>
+
+<h4>
+    attendance : <span class="tag">{{ percent }}%</span>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+
+    {% if request.session.ROLE  == 'lecture' or request.session.ROLE  == 'admin' %}
+        <a href="send_mail?sid={{ sid }}&ead={{ lilen }}&aad={{ total_ok }}&p={{ percent }}">
+            <button>
+                send email to student tell'em poor attendance
+            </button>
+        </a>
+    {% endif %}
+
+
+</h4>
+
+
+<table border="1" style="border-collapse: collapse;">
+
+    <tr>
+        <th>student_id</th>
+        <th>full name</th>
+    </tr>
+
+    {% for l in li %}
+        <tr>
+            <td>{{ l.date }}</td>
+            <td>{{ l.record_text }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+
+</body>
+<style>
+    .tag {
+        background-color: orange;
+        padding: 5px 10px;
+    }
+</style>
+</html>
